@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク分類4次元マトリックス</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+        .matrix-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            height: 800px;
+            position: relative;
+            border: 2px solid #4a4a4a;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
+        .quadrant {
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+        .quadrant:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .q1 { 
+            background: linear-gradient(135deg, #1a2332 0%, #2a2a2a 100%);
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .q2 { 
+            background: linear-gradient(135deg, #2a2a3a 0%, #3a3a3a 100%);
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .q3 { 
+            background: linear-gradient(135deg, #2a3032 0%, #2a2a2a 100%);
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .q4 { 
+            background: linear-gradient(135deg, #3a3a4a 0%, #4a4a4a 100%);
+            grid-column: 2;
+            grid-row: 2;
+        }
+        .quadrant-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a4a4a;
+        }
+        .task-item {
+            background-color: #3a3a3a;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 14px;
+            line-height: 1.5;
+            transition: all 0.2s ease;
+            color: #f5f5f5;
+        }
+        .task-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+            background-color: #4a4a4a;
+        }
+        .axis-label {
+            position: absolute;
+            font-weight: bold;
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+        .axis-x {
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+        }
+        .axis-y {
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: center;
+            white-space: nowrap;
+        }
+        .legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #3a3a3a;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #f0f0f0;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>タスク分類 4次元マトリックス</h1>
+        
+        <div style="position: relative;">
+            <div class="axis-label axis-x">
+            </div>
+            <div class="axis-label axis-y">
+                <span>↑ 答えがだせるタスク　　　答えのないタスク ↓</span>
+            </div>
+            
+            <div class="matrix-container">
+                <div class="quadrant q1">
+                    <div class="quadrant-title">第1象限: 答えがだせる × お客様に見えない</div>
+                    <div class="task-item">主要な配信シナリオの設計</div>
+                    <div class="task-item">設定と配信テスト</div>
+                    <div class="task-item">規約・ポリシー関連ページの作成</div>
+                    <div class="task-item">商品情報の登録と最終実装</div>
+                    <div class="task-item">LPコーディングと最終調整</div>
+                    <div class="task-item">各種マニュアル作成（検品・梱包）</div>
+                    <div class="task-item">ECシステムと倉庫システムの連携</div>
+                    <div class="task-item">全パターンの出荷テスト実施</div>
+                </div>
+                
+                <div class="quadrant q2">
+                    <div class="quadrant-title">第2象限: 答えのない × お客様に見えない</div>
+                    <div class="task-item">CS方針を決める</div>
+                    <div class="task-item">CSメッセージの生成プロンプト作成</div>
+                </div>
+                
+                <div class="quadrant q3">
+                    <div class="quadrant-title">第3象限: 答えがだせる × お客様が見える</div>
+                    <div class="task-item">FAQ・応対テンプレートの作成</div>
+                </div>
+                
+                <div class="quadrant q4">
+                    <div class="quadrant-title">第4象限: 答えのない × お客様が見える</div>
+                    <div class="task-item">LINEメッセージ作成</div>
+                    <div class="task-item">ECデザインのFIX</div>
+                    <div class="task-item">動画の修正</div>
+                    <div class="task-item">動画の最終微調整</div>
+                    <div class="task-item">LPデザイン修正</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #1a2332 0%, #2a2a2a 100%);"></div>
+                <span><strong>第1象限:</strong> 答えがだせるタスク × お客様に見えないもの</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #2a2a3a 0%, #3a3a3a 100%);"></div>
+                <span><strong>第2象限:</strong> 答えのないタスク × お客様に見えないもの</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #2a3032 0%, #2a2a2a 100%);"></div>
+                <span><strong>第3象限:</strong> 答えがだせるタスク × お客様が見えるもの</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #3a3a4a 0%, #4a4a4a 100%);"></div>
+                <span><strong>第4象限:</strong> 答えのないタスク × お客様が見えるもの</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
